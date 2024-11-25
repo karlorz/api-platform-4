@@ -1,0 +1,23 @@
+# api/config/schema.yaml
+types:
+  # parent: Thing
+  Thing:
+    properties:
+      name: ~
+  Pet:
+    parent: ~
+    properties:
+      id:
+        range: integer
+      name:
+        range: string
+      category:
+        range: Category
+      status:
+        range: Text
+  Category:
+    properties:
+      id:
+        range: integer
+      name:
+        range: string
