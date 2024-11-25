@@ -1,23 +1,24 @@
 # api/config/schema.yaml
+# The list of types and properties we want to use
 types:
-  # parent: Thing
+  # Parent class of Person
   Thing:
     properties:
       name: ~
-  Pet:
+  Person:
+    # Enable the generation of the class hierarchy (not enabled by default)
     parent: ~
     properties:
-      id:
-        range: integer
-      name:
-        range: string
-      category:
-        range: Category
-      status:
-        range: Text
-  Category:
+      familyName: ~
+      givenName: ~
+      additionalName: ~
+      address: ~
+  PostalAddress:
     properties:
-      id:
-        range: integer
-      name:
-        range: string
+      # Force the type of the addressCountry property to text
+      addressCountry: { range: 'Text' }
+      addressLocality: ~
+      addressRegion: ~
+      postOfficeBoxNumber: ~
+      postalCode: ~
+      streetAddress: ~
