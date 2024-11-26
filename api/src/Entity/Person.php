@@ -7,6 +7,12 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 
 /**
  * A person (alive, dead, undead, or fictional).
@@ -14,7 +20,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @see https://schema.org/Person
  */
 #[ORM\Entity]
-#[ApiResource(types: ['https://schema.org/Person'])]
+#[ApiResource(
+    types: ['https://schema.org/Person'],
+    operations: [
+        new GetCollection(uriTemplate: '/person'),
+        new Get(uriTemplate: '/person/{id}'),
+        new Post(uriTemplate: '/person'),
+        new Put(uriTemplate: '/person/{id}'),
+        new Patch(uriTemplate: '/person/{id}'),
+        new Delete(uriTemplate: '/person/{id}'),
+    ]
+)]
 class Person extends Thing
 {
     /**

@@ -12,6 +12,7 @@ security:
         main:
             lazy: true
             provider: users_in_memory
+            security: false
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -24,6 +25,14 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
+        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
+        - { path: ^/auth, roles: PUBLIC_ACCESS }
+        # - { path: ^/monsters, roles: IS_AUTHENTICATED_FULLY } # auth for monsters
+        - { path: ^/person, roles: PUBLIC_ACCESS }
+        - { path: ^/postal_addresses, roles: PUBLIC_ACCESS }
+        - { path: ^/, roles: PUBLIC_ACCESS }
+
 
 when@test:
     security:
